@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes Financeiros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/financas.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-theme"> 
+    
+    <div class="container-fluid">
+        
+        <header class="top-header">
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
+            <h2>Finanças 💰</h2>
+            <div style="width: 20px;"></div> 
+        </header>
+
+        <div class="summary-grid">
+            </div>
+
+        </div>
+
+    <div class="container-fluid">
+        
+        <div class="summary-grid">
+            <div class="summary-card green">
+                <span class="label">↗ Receitas</span>
+                <h3 id="detail-income">R$ 0,00</h3>
+            </div>
+            <div class="summary-card red">
+                <span class="label">↘ Despesas</span>
+                <h3 id="detail-expense">R$ 0,00</h3>
+            </div>
+            <div class="summary-card teal">
+                <span class="label">Saldo Atual</span>
+                <h3 id="detail-balance">R$ 0,00</h3>
+            </div>
+        </div>
+
+        <div class="controls-area">
+            <div class="tabs">
+                <button class="tab active" id="tabBtnTransacoes">Transações</button>
+                <button class="tab" id="tabBtnGraficos">Gráficos</button>
+            </div>
+        </div>
+
+        <div id="view-lista" class="fade-in">
+            <div class="filters-container">
+        <input type="text" id="inputBusca" placeholder="🔍 Buscar nome..." class="search-input">
+        
+        <div class="date-filters">
+            <input type="date" id="filtroDataInicio" title="Data Inicial">
+            <span style="color:#64748b">até</span>
+            <input type="date" id="filtroDataFim" title="Data Final">
+        </div>
+
+        <button id="btnExportar" class="btn-export">
+            📥 Exportar Relatório
+        </button>
+    </div>
+
+            <div class="transaction-list">
+                <h3>Suas Transações 💳</h3>
+                <div id="lista-transacoes">
+                    <p style="text-align: center; color: #aaa;">Carregando...</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-grafico" class="fade-in" style="display: none;">
+            <div class="transaction-list">
+                <h3>Análise de Despesas 📊</h3>
+                <div class="chart-wrapper" style="position: relative; height: 300px;">
+                    <canvas id="graficoCategorias"></canvas>
+                </div>
+                <p class="chart-help-text">
+                    Passe o mouse sobre as cores para ver o valor exato.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="fab" id="btnAbrirModal" type="button">+</button>
+
+    <div id="modalNovaTransacao" class="modal-overlay">
+        <div class="modal-card modal-modern">
+            <div class="modal-header">
+                <h3>✨ Nova Movimentação</h3>
+                <button type="button" class="close-btn" style="background:none; border:none; color:white; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            
+            <form id="formTransacao">
+                <div class="type-toggle-container">
+                    <button type="button" class="btn-toggle active" id="btnToggleExpense" data-type="expense">📉 Despesa</button>
+                    <button type="button" class="btn-toggle" id="btnToggleIncome" data-type="income">📈 Receita</button>
+                    <input type="hidden" id="novoTipo" value="expense">
+                </div>
+
+                <div class="form-body">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input type="text" id="novaDesc" placeholder="Ex: Mercado" required>
+                    </div>
+                    
+                    <div class="form-group highlight-group">
+                        <label>Valor (R$)</label>
+                        <div class="input-wrapper big-input">
+                            <span>R$</span>
+                            <input type="text" id="novoValor" class="mascara-moeda" placeholder="R$ 0,00" required>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Categoria</label>
+                            <select id="novaCategoria">
+                                <option value="Alimentação">🍔 Alimentação</option>
+                                <option value="Transporte">🚗 Transporte</option>
+                                <option value="Lazer">🎉 Lazer</option>
+                                <option value="Saúde">💊 Saúde</option>
+                                <option value="Moradia">🏠 Moradia</option>
+                                <option value="Salário">💰 Salário</option>
+                                <option value="Investimento">📈 Investimento</option>
+                                <option value="Outros">📦 Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Data</label>
+                            <input type="date" id="novaData" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="gap: 15px; display: flex;">
+                    <button type="button" class="btn-cancel close-btn-action" style="flex: 1;">Cancelar</button>
+                    <button type="submit" class="btn-save" style="flex: 1;">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalEditarTransacao" class="modal-overlay">
+        <div class="modal-card modal-modern"> 
+            <div class="modal-header">
+                <h3>📝 Detalhes da Transação</h3>
+                <button type="button" id="fecharModalEdicao" class="close-btn">&times;</button>
+            </div>
+            
+            <form id="formEditarTransacao">
+                <input type="hidden" id="editId">
+                
+                <div class="form-body">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input type="text" id="editDesc" required>
+                    </div>
+                    
+                    <div class="form-group highlight-group">
+                        <label>Valor (R$)</label>
+                        <div class="input-wrapper big-input">
+                            <span>R$</span>
+                            <input type="text" id="editValor" class="mascara-moeda" placeholder="R$ 0,00" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="editCategoria">
+                            <option value="Alimentação">🍔 Alimentação</option>
+                            <option value="Transporte">🚗 Transporte</option>
+                            <option value="Lazer">🎉 Lazer</option>
+                            <option value="Saúde">💊 Saúde</option>
+                            <option value="Moradia">🏠 Moradia</option>
+                            <option value="Salário">💰 Salário</option>
+                            <option value="Investimento">📈 Investimento</option>
+                            <option value="Outros">📦 Outros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="gap: 15px; display: flex;">
+                    <button type="button" id="btnExcluir" style="flex: 1; background: #ef4444; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.2s;">
+                        🗑️ Excluir
+                    </button>
+                    <button type="submit" class="btn-save" style="flex: 1;">
+                        💾 Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/script.js"></script>
+
+</body>
+</html>

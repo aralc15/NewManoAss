@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Diário</title>
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/diario.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <div class="container-lembretes"> 
+        <header class="top-header">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar</a>
+            <h2>Diário 📖</h2>
+            <div style="width: 20px;"></div>
+        </header>
+
+        <div class="daily-input-card">
+            <h3>Como foi seu dia?</h3>
+            
+            <div class="mood-selector">
+                <button class="mood-btn" data-mood="incrivel">🤩<br>Incrível</button>
+                <button class="mood-btn" data-mood="feliz">🙂<br>Bom</button>
+                <button class="mood-btn" data-mood="neutro">😐<br>Normal</button>
+                <button class="mood-btn" data-mood="cansado">😫<br>Cansado</button>
+                <button class="mood-btn" data-mood="triste">😞<br>Ruim</button>
+            </div>
+
+            <textarea id="diarioTexto" placeholder="Escreva aqui seus pensamentos, vitórias ou desabafos do dia..."></textarea>
+            
+            <div class="form-row">
+                <input type="date" id="diarioData" class="date-input">
+                <button id="btnSalvarDiario" class="btn-primary">Salvar Dia</button>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h3>Histórico</h3>
+            <div id="listaDiario" class="diary-list">
+                <p style="text-align: center; color: #64748b; margin-top: 20px;">Carregando memórias...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="../assets/js/script.js"></script>
+</body>
+</html>

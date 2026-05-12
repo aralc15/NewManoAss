@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Lembretes</title>
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/lembretes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <div class="container-lembretes">
+        
+        <header class="top-header">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar</a>
+            <h2>Lembretes ⏰</h2>
+            <div style="width: 20px;"></div> 
+        </header>
+
+        <div class="filters-scroll">
+            <button class="filter-chip active" data-filter="all">Todos</button>
+            <button class="filter-chip" data-filter="today">Hoje</button>
+            <button class="filter-chip" data-filter="week">7 Dias</button>
+            <button class="filter-chip" data-filter="pending">Pendentes</button>
+            <button class="filter-chip" data-filter="completed">Concluídos</button>
+        </div>
+
+        <div id="listaLembretes" class="reminders-list">
+            <p style="text-align: center; color: #64748b; margin-top: 50px;">Carregando...</p>
+        </div>
+
+    </div>
+
+    <button id="btnNovoLembrete" class="fab-add">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <div id="modalLembrete" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Novo Lembrete</h3>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="formLembrete">
+                <input type="hidden" id="lembreteId">
+                <div class="form-group">
+                    <label>Título</label>
+                    <input type="text" id="lembreteTitulo" placeholder="O que não pode esquecer?" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" id="lembreteData" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Hora</label>
+                        <input type="time" id="lembreteHora" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Prioridade</label>
+                        <select id="lembretePrioridade">
+                            <option value="low">🟢 Baixa</option>
+                            <option value="medium" selected>🟡 Média</option>
+                            <option value="high">🔴 Alta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoria</label>
+                        <select id="lembreteCategoria">
+                            <option value="Geral">📌 Geral</option>
+                            <option value="Trabalho">💼 Trabalho</option>
+                            <option value="Pessoal">👤 Pessoal</option>
+                            <option value="Estudos">📚 Estudos</option>
+                            <option value="Saúde">💊 Saúde</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Descrição</label>
+                    <textarea id="lembreteDesc" rows="2" placeholder="Detalhes..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Salvar Lembrete</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/script.js"></script>
+</body>
+</html>

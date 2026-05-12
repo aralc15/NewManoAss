@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Hábitos</title>
+    
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/habitos.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+
+    <div class="container-habito"> 
+        
+        <header class="top-header">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar</a>
+            <h2>Hábitos 🎯</h2>
+            <div style="width: 20px;"></div> </header>
+
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+            <button id="btnAbrirModalHabito" class="btn-novo-habito">
+                <i class="fas fa-plus"></i> Novo Hábito
+            </button>
+        </div>
+
+        <div id="listaHabitos" class="habits-list">
+            <p style="text-align: center; color: #64748b; margin-top: 40px;">Carregando seus hábitos...</p>
+        </div>
+
+    </div>
+
+    <div id="modalHabito" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Criar Novo Hábito</h3>
+                <button class="close-btn" id="fecharModalHabito"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Nome do Hábito</label>
+                    <input type="text" id="habitoNome" placeholder="Ex: Beber 2L de água, Ler 10 páginas..." autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <label>Cor de Destaque</label>
+                    <div class="color-picker" id="seletorCores">
+                        <button class="color-btn selected" data-color="#3b82f6" style="background: #3b82f6;"></button> <button class="color-btn" data-color="#22c55e" style="background: #22c55e;"></button> <button class="color-btn" data-color="#f59e0b" style="background: #f59e0b;"></button> <button class="color-btn" data-color="#ef4444" style="background: #ef4444;"></button> <button class="color-btn" data-color="#8b5cf6" style="background: #8b5cf6;"></button> <button class="color-btn" data-color="#ec4899" style="background: #ec4899;"></button> </div>
+                </div>
+                
+                <button id="btnSalvarHabito" style="width: 100%; margin-top: 15px; padding: 12px; border-radius: 8px; background: #3b82f6; color: white; border: none; font-weight: 600; cursor: pointer; transition: 0.2s;">
+                    Salvar Hábito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../assets/js/script.js"></script>
+</body>
+</html>
