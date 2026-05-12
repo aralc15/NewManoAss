@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mano Financeiro - Login</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ESTILO DA TELA DE LOGIN */
+        #login-screen, #app-content {
+            display: none !important;
+        }
+        #login-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Campos de Email/Senha */
+        .login-input {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #1e293b;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        .login-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Botões */
+        .btn-auth {
+            width: 100%;
+            max-width: 300px;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .btn-entrar {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-cadastrar {
+            background: transparent;
+            border: 1px solid #475569;
+            color: #94a3b8;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        .btn-auth:hover { transform: scale(1.02); }
+        .btn-auth:active { transform: scale(0.98); }
+
+        /* Esconder App Inicialmente */
+        #app-content { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🤖</div>
+        <h1 style="font-size: 2.5rem; margin-bottom: 5px;">Mano <span style="color: #3b82f6;">Financeiro</span></h1>
+        <p style="color: #94a3b8; margin-bottom: 30px;">Digite seu e-mail e senha para entrar.</p>
+        
+        <input type="email" id="login-email" class="login-input" placeholder="seu@email.com" autocomplete="email">
+        <input type="password" id="login-password" class="login-input" placeholder="Sua senha" autocomplete="current-password">
+
+        <button id="btnLogin" class="btn-auth btn-entrar">
+            Entrar
+        </button>
+
+        <button id="btnRegister" class="btn-auth btn-cadastrar">
+            Não tem conta? Cadastrar
+        </button>
+
+        <p id="msgErro" style="color: #ef4444; margin-top: 15px; font-size: 0.9rem; display: none;"></p>
+    </div>
+
+    <div class="app-container" id="app-content">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-wallet"></i> Mano<span class="highlight">Financeiro</span></h2>
+                <button id="closeSidebar" class="mobile-only-btn">&times;</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Visão Geral</a>
+                <a href="/pages/financas.html" class="nav-item"><i class="fas fa-exchange-alt"></i> Transações</a>
+                <a href="/pages/diario.html" class="nav-item"><i class="fas fa-chart-pie"></i> Relatórios</a>
+                <a href="/pages/projetos.html" class="nav-item"><i class="fas fa-bullseye"></i> Projetos</a>
+                <a href="/pages/configuracoes.html" class="nav-item"><i class="fas fa-cog"></i> Configurações</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="avatar">M</div>
+                    <div class="user-details">
+                        <span class="name">Mano</span>
+                        <span class="status">Online</span>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="logout-btn" title="Sair da conta">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar fixed-nav">
+                <button id="menuToggle" class="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="greeting-area">
+                    <h2>Olá, Mano! 👋</h2>
+                    <p>Vamos controlar essa grana hoje?</p>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <div class="module-cards">
+                    <a href="pages/financas.html" class="module-card finance" style="text-decoration: none;">
+                        <div class="card-header">
+                            <span class="card-icon">💰</span>
+                            <h3>Finanças</h3>
+                        </div>
+                        <div class="card-content">
+                            <p class="big-number" id="saldoDisplay">R$ 0,00</p>
+                            <p class="sub-text">Saldo Atual</p>
+                            <div style="margin-top: 10px; font-size: 0.8rem; display: flex; gap: 10px;">
+                                <span style="color: var(--success)"> ⬆ <span id="receitasDisplay">R$ 0,00</span></span>
+                                <span style="color: var(--danger)"> ⬇ <span id="despesasDisplay">R$ 0,00</span></span>
+                            </div>
+                        </div>
+                    </a>
+                
+                    <a href="pages/lembretes.html" class="module-card reminders" style="text-decoration: none;">
+                        <div class="card-header"> <span class="card-icon">⏰</span> <h3>Lembretes</h3> </div>
+                        <div class="card-content"> <p class="big-number">0</p> <p class="sub-text">Para hoje</p> </div>
+                    </a>
+                    
+                    <a href="pages/habitos.html" class="module-card habits" style="text-decoration: none;">
+                        <div class="card-header"> <span class="card-icon">🔥</span> <h3>Hábitos</h3> </div>
+                        <div class="card-content"> <p class="big-number">0%</p> <p class="sub-text">Concluídos hoje</p> </div>
+                    </a>
+                    <a href="pages/projetos.html" class="module-card projects" style="text-decoration: none;">
+                        <div class="card-header"> 
+                            <span class="card-icon">🚀</span> 
+                            <h3>Projetos</h3> 
+                        </div>
+
+                        <div class="card-content"> 
+                            <p class="big-number" id="contador-projetos">0</p> 
+                            <p class="sub-text">Em andamento</p> 
+                        </div>
+                    </a>
+                    
+                    <a href="pages/diario.html" class="module-card diary" style="text-decoration: none;">
+                        <div class="card-header"> <span class="card-icon">📖</span> <h3>Diário</h3> </div>
+                        <div class="card-content"> <p class="sub-text">Descarregue seus pensamentos aqui</p> <button class="btn-small">Escrever</button> </div>
+                    </a>
+                    <a href="pages/analise.html" class="module-card analises" style="text-decoration: none;">
+                        <div class="card-header"> <span class="card-icon">🧠</span> <h3>Análises</h3> </div>
+                        <div class="card-content"> <p class="sub-text">Status:</p> </div>
+                    </a>
+                </div>
+
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="chat-widget" id="chatWidget">
+                        <div class="chat-header" id="chatHeader">
+                            <div class="chat-title"> <span class="avatar-small">🤖</span> <span>Mano IA</span> </div>
+    
+                            <div style="display: flex; gap: 8px; align-items: center;">
+                                <button id="btnLimparChat" onclick="limparHistoricoChat()" class="chat-toggle-btn" style="color: #ef4444; cursor: pointer; background: transparent; border: none;" title="Limpar Histórico"> 
+                                    <i class="fas fa-trash"></i> 
+                                </button>
+                                <button id="toggleChat" class="chat-toggle-btn"> 
+                                    <i class="fas fa-chevron-down"></i> 
+                                </button>
+                            </div>
+                        </div>
+                        
+
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">
+                                <p>E aí, Mano! Tudo certo? 🤙<br>Sou seu assistente pessoal. Posso ajudar com finanças, projetos e lembretes. Só falar! 🚀</p>
+                                <span class="time">Agora</span>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" placeholder="Ex: Gastei 50..." autocomplete="off">
+                            <button id="sendMessage" class="send-btn"> <i class="fas fa-paper-plane"></i> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="assets/js/script.js"></script>
+</body>
+</html>
