@@ -1,0 +1,240 @@
+/* =========================================
+   0. GERAL E CONTAINER
+   ========================================= */
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container-habito {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* =========================================
+   1. CABEÇALHO (Estilo Card Solto)
+   ========================================= */
+.top-header {
+    background: #1e293b;
+    padding: 20px;       /* Espaço interno generoso */
+    border-radius: 12px; /* Cantos arredondados */
+    border: 1px solid #334155;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; /* Empurra o conteúdo para baixo */
+}
+
+.top-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: #f8fafc;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+.back-btn:hover { 
+    color: white; 
+    background: rgba(255,255,255,0.05);
+}
+
+/* =========================================
+   1.5 BOTÃO NOVO HÁBITO
+   ========================================= */
+.btn-novo-habito {
+    padding: 10px 20px; 
+    border-radius: 8px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    background: #3b82f6; 
+    color: white; 
+    border: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    
+    /* A mágica da suavidade acontece aqui: */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+
+/* O que acontece quando o mouse passa por cima */
+.btn-novo-habito:hover {
+    background: #2563eb; /* Um azul levemente mais escuro */
+    transform: translateY(-2px); /* Levanta o botão suavemente */
+    box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4); /* Aumenta a sombra */
+}
+
+/* O que acontece quando clica (aperta) */
+.btn-novo-habito:active {
+    transform: translateY(0) scale(0.98); /* Dá uma "esmagadinha" satisfatória */
+}
+
+/* =========================================
+   2. LISTA E CARDS DE HÁBITOS
+   ========================================= */
+.habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* O esqueleto do card do hábito */
+.habit-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.habit-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.habit-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.habit-color-indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.habit-title {
+    color: #f8fafc;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex-grow: 1;
+}
+
+.habit-delete {
+    color: #64748b;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+.habit-delete:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* Botões dos dias da semana (Os Checks) */
+.habit-days {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.day-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.day-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.day-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #334155;
+    background: #0f172a;
+    color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+/* Quando o dia estiver marcado, o JS vai adicionar essa classe */
+.day-btn.completed {
+    color: white;
+    border-color: transparent;
+    /* O background color será injetado pelo JS com a cor escolhida */
+}
+
+/* =========================================
+   3. MODAL (Janela Nova de Hábito)
+   ========================================= */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    display: none; /* Escondido por padrão */
+    justify-content: center; align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-card {
+    background: #1e293b;
+    border-radius: 16px;
+    width: 90%; max-width: 400px;
+    padding: 25px;
+    border: 1px solid #334155;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 { margin: 0; color: #f8fafc; }
+.close-btn { background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; }
+.close-btn:hover { color: white; }
+
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; color: #94a3b8; margin-bottom: 8px; font-size: 0.9rem; }
+.input-group input {
+    width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #334155;
+    background: #0f172a; color: #f8fafc; outline: none; box-sizing: border-box;
+}
+.input-group input:focus { border-color: #3b82f6; }
+
+/* Bolinhas de escolher cor */
+.color-picker { display: flex; justify-content: space-between; gap: 10px; }
+.color-btn {
+    width: 35px; height: 35px; border-radius: 50%;
+    border: 2px solid transparent; cursor: pointer; transition: 0.2s;
+}
+.color-btn:hover { transform: scale(1.1); }
+.color-btn.selected {
+    box-shadow: 0 0 0 2px #1e293b, 0 0 0 4px #f8fafc; /* Efeito de anel branco em volta */
+}

@@ -1,0 +1,280 @@
+/* =========================================
+   1. GERAL 
+   ========================================= */
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container-projetos {
+    max-width: 1000px; /* Limite de largura igual Finanças */
+    margin: 0 auto;    /* Centraliza na tela */
+    padding: 20px;     /* Espaço interno para nada tocar a borda */
+    padding-bottom: 80px; /* Espaço para o botão flutuante (FAB) não cobrir o conteúdo */
+}
+
+/* =========================================
+   2. CABEÇALHO (Estilo Card Solto)
+   ========================================= */
+.top-header {
+    background: #1e293b;
+    padding: 20px;       /* Espaço interno generoso */
+    border-radius: 12px; /* Cantos arredondados */
+    border: 1px solid #334155;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px; /* Empurra o conteúdo para baixo */
+}
+
+.top-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    color: #f8fafc;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+.back-btn:hover { 
+    color: white; 
+    background: rgba(255,255,255,0.05);
+}
+
+/* =========================================
+   3. BOTÃO FLUTUANTE (FAB)
+   ========================================= */
+.fab-add {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px; height: 60px;
+    background-color: #3b82f6; /* Azul para diferenciar dos Lembretes */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
+    display: grid; place-items: center;
+    transition: transform 0.2s;
+    z-index: 900;
+}
+.fab-add:hover {
+    transform: scale(1.1);
+    background-color: #2563eb;
+}
+
+/* =========================================
+   4. CONTEÚDO ESPECÍFICO: PROJETOS
+   ========================================= */
+.summary-card {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding: 20px;
+    border-radius: 12px; /* Ajustado para combinar com o header */
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.summary-card h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.9;
+    margin: 0 0 8px 0;
+}
+
+.summary-card h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .projetos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.projeto-card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid #334155;
+    border-left: 5px solid #3b82f6; /* Tarja lateral azul igual aos Lembretes */
+    transition: transform 0.2s;
+}
+
+.projeto-card:hover {
+    transform: translateY(-3px);
+    border-color: #475569;
+}
+
+.projeto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.projeto-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+.btn-icon:hover { color: #ef4444; }
+
+.projeto-valores {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.valor-atual {
+    color: #10b981; /* Verde para grana guardada */
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.progress-container {
+    width: 100%;
+    height: 10px;
+    background-color: #0f172a; /* Fundo escuro padrão */
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #334155;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa); /* Degradê azul */
+    border-radius: 8px;
+    transition: width 0.8s ease-in-out;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    text-align: right;
+    color: #cbd5e1;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.btn-movimentar {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.btn-movimentar:hover {
+    background: #3b82f6;
+    color: white;
+}
+
+/* =========================================
+   5. MODAL (Fundo escuro e Inputs Escuros)
+   ========================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    justify-content: center; align-items: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal-content {
+    background: #1e293b;
+    width: 90%; max-width: 500px;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #334155; padding-bottom: 15px;
+}
+.modal-header h3 { margin: 0; color: #f8fafc; font-size: 1.3rem; }
+.close-btn { color: #94a3b8; font-size: 1.5rem; cursor: pointer; }
+
+/* INPUTS ESCUROS IGUAL FINANÇAS E LEMBRETES */
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 8px; color: #cbd5e1; font-size: 0.95rem; }
+
+.form-group input, .form-group select {
+    width: 100%;
+    background: #0f172a !important; /* FORÇA O FUNDO ESCURO */
+    border: 1px solid #334155;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+}
+.form-group input:focus, .form-group select:focus { border-color: #3b82f6; }
+
+.form-row { display: flex; gap: 15px; }
+.form-row .form-group { flex: 1; }
+
+.btn-primary {
+    width: 100%; padding: 16px;
+    background: #3b82f6; color: white;
+    border: none; border-radius: 8px;
+    font-size: 1.1rem; font-weight: bold;
+    cursor: pointer; margin-top: 10px;
+    transition: 0.2s;
+}
+.btn-primary:hover { background: #2563eb; }
+
+/* =========================================
+   AJUSTE DE RESPONSIVIDADE (Telas Pequenas)
+   ========================================= */
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column; /* Coloca um em cima do outro no celular */
+        gap: 0;
+    }
+}
