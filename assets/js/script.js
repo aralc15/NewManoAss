@@ -19,7 +19,7 @@ let humorSelecionado = '';
 let corHabitoSelecionada = '#3b82f6'; 
 const modeloEscolhido = "models/gemini-2.5-flash";
 // 🔴 A SUA CHAVE AQUI 🔴
-    const GEMINI_API_KEY = 'AIzaSyBKQZ8P9vSVFAayCisDBf7uP4kKdWguKe0'; 
+    const GEMINI_API_KEY = window.GEMINI_API_KEY; 
 
 // ==========================================
 // MENU HAMBURGER (MOBILE)
