@@ -1648,7 +1648,7 @@ function configurarBotaoIA(transacoes) {
 
         try {
             // Lembrete: Coloque aqui o modelo exato que funcionou para você antes (ex: models/gemini-2.0-flash)
-            onst apiKeyAtual = window.GEMINI_API_KEY;
+            const apiKeyAtual = window.GEMINI_API_KEY;
             const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/${modeloEscolhido}:generateContent?key=${apiKeyAtual}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
