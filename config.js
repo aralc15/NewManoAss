@@ -1,1 +1,2 @@
 window.GEMINI_API_KEY = "AIzaSyDupwD2rfYfFQzrbwZxtBX9H06sXOb3xTU";
+console.log("Config carregado com sucesso!");
